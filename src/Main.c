@@ -43,7 +43,7 @@ void mouseCallback(int xPos, int yPos){
     cameraFront[1] = front[1];
     cameraFront[2] = front[2];
 }
-void renderCube(float w->ElapsedTime) {
+void renderCube(float ElapsedTime) {
     glPushMatrix();
     glRotatef(angle, 1.0f, 0.0f, 0.0f);
     glRotatef(angle * 0.66f, 0.0f, 1.0f, 0.0f);
@@ -87,7 +87,7 @@ void renderCube(float w->ElapsedTime) {
     glEnd();
     glPopMatrix();
 }
-void renderScene(float w->ElapsedTime) {
+void renderScene(float ElapsedTime) {
     int width = GetWidth();
     int height = GetHeight();
 
@@ -115,16 +115,16 @@ void renderScene(float w->ElapsedTime) {
         cameraUp[0], cameraUp[1], cameraUp[2]
     );
 
-    renderCube(w->ElapsedTime);
+    renderCube(ElapsedTime);
 }
 
-void Setup(AlxWindow* w){
+void Setup(AglWindow* w){
 	glEnable(GL_DEPTH_TEST);
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 }
 
-void Update(AlxWindow* w){
-    angle += 45.0f * w->ElapsedTime;
+void Update(AglWindow* w){
+    angle += 45.0f * w->w.ElapsedTime;
     
     if (Stroke(ALX_KEY_W).DOWN)
         cameraPos[2] += 0.1f;
@@ -137,10 +137,10 @@ void Update(AlxWindow* w){
 
     mouseCallback(GetMouse().x,GetMouse().y);
 
-    renderScene(w->ElapsedTime);
+    renderScene(w->w.ElapsedTime);
 }
 
-void Delete(AlxWindow* w){
+void Delete(AglWindow* w){
 
 }
 
